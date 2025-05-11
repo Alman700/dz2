@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Чингиз Айтматов",
+    "photo": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTJRjw2Sjzq108ZlB7qEjBsebXHV-1QrE4XPaJAvb90qzGz85Kv-oQDFZOqzkyoElHGpWlHosoaeTvkH2FFI46jOQ",
+    "description": "Писатель мирового уровня, автор романов 'Плаха', 'И дольше века длится день'."
+  },
+  {
+    "name": "Алыкул Осмонов",
+    "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTo0QSEhlgk_DNsklaeHuCKKqpK3wQxx7hjjg&s",
+    "description": "Выдающийся поэт, внёсший огромный вклад в кыргызскую литературу."
+  },
+  {
+    "name": "Бубусара Бейшеналиева",
+    "photo": "https://24.kg/thumbnails/b47ff/35b7e/10920_w750_h_r.png",
+    "description": "Первая балерина Кыргызстана, символ национального балета."
+  }
+]
