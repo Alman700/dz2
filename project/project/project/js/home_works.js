@@ -96,14 +96,14 @@ button.addEventListener('click', () => {
 }, 1000);
 }
 
-    // Функция для остановки секундомера
+    // ____________________________________________________Функция для остановки секундомера
     function stopTimer() {
     isRunning = false;
     clearInterval(timerInterval); // остановить интервал
     startButton.textContent = 'Resume'; // сменить текст кнопки на "Resume"
 }
 
-    // Функция для сброса секундомера
+    // _____________________________________________________Функция для сброса секундомера
     function resetTimer() {
     time = 0;
     secondsDisplay.textContent = time; // обновить отображаемое время
@@ -114,7 +114,7 @@ button.addEventListener('click', () => {
     startButton.textContent = 'Start'; // вернуть текст кнопки к исходному состоянию
 }
 
-    // Обработчики событий для кнопок
+    // _____________________________________________________Обработчики событий для кнопок
     startButton.addEventListener('click', () => {
     if (isRunning) {
     stopTimer(); // если уже работает, остановить
