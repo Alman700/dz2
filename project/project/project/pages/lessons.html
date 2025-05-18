@@ -104,21 +104,53 @@
         <div class="container">
             <h3>CONVERTER</h3>
             <div class="inner_converter">
-                <div class="som">
-                    <label for="som">Som</label>
-                    <input type="number" id="som">
+                <div class="inputs_block">
+                    <div class="som">
+                        <label for="som">KGZ</label>
+                        <input type="number" id="som">
+                    </div>
+                    <div class="usd">
+                        <label for="usd">USD</label>
+                        <input type="number" id="usd">
+                    </div>
+                    <div class="eur">
+                        <label for="eur">EUR</label>
+                        <input type="number" id="eur">
+                    </div>
                 </div>
-                <div class="usd">
-                    <label for="usd">Usd</label>
-                    <input type="number" id="usd">
-                </div>
-                <div class="eur">
-                    <label for="eur">Eur</label>
-                    <input type="number" id="eur">
+
+                <!-- Блок с курсами -->
+                <div class="rate-info">
+                    <p id="rate-usd">1 USD = ... KGS</p>
+                    <p id="rate-eur">1 EUR = ... KGS</p>
+                    <p id="update-time">Последнее обновление: --:--:--</p>
+                    <button id="refresh-btn">Обновить сейчас</button>
+                    <button id="source-btn">Данные с: ER API</button>
                 </div>
             </div>
         </div>
     </div>
+
+
+    <!--    <div class="converter">-->
+<!--        <div class="container">-->
+<!--            <h3>CONVERTER</h3>-->
+<!--            <div class="inner_converter">-->
+<!--                <div class="som">-->
+<!--                    <label for="som">Som</label>-->
+<!--                    <input type="number" id="som">-->
+<!--                </div>-->
+<!--                <div class="usd">-->
+<!--                    <label for="usd">Usd</label>-->
+<!--                    <input type="number" id="usd">-->
+<!--                </div>-->
+<!--                <div class="eur">-->
+<!--                    <label for="eur">Eur</label>-->
+<!--                    <input type="number" id="eur">-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 
     <div class="card_switcher">
         <div class="container">
