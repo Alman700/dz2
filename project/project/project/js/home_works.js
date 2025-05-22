@@ -1,4 +1,4 @@
-// 1,Проверка валидности в gmail блоке
+// 1. Проверка валидности в gmail блоке
 const input = document.getElementById('gmail_input');
 const button = document.getElementById('gmail_button');
 const result = document.getElementById('gmail_result');
@@ -18,151 +18,154 @@ button.addEventListener('click', () => {
     }
 });
 
-    const child = document.querySelector('.child_block');
-    const parent = document.querySelector('.parent_block');
+// 2. Анимация движения блока по периметру родителя
+const child = document.querySelector('.child_block');
+const parent = document.querySelector('.parent_block');
 
-    let x = 0;
-    let y = 0;
-    const step = 1;
-    const parentWidth = parent.clientWidth;
-    const parentHeight = parent.clientHeight;
-    const childWidth = child.clientWidth;
-    const childHeight = child.clientHeight;
+let x = 0;
+let y = 0;
+const step = 1;
+const parentWidth = parent.clientWidth;
+const parentHeight = parent.clientHeight;
+const childWidth = child.clientWidth;
+const childHeight = child.clientHeight;
 
-    let direction = 'right';
+let direction = 'right';
 
-    function moveSquare() {
+function moveSquare() {
     child.style.left = `${x}px`;
     child.style.top = `${y}px`;
 
     if (direction === 'right') {
-    if (x + childWidth < parentWidth) {
-    x += step;
-} else {
-    direction = 'down';
-}
-}
+        if (x + childWidth < parentWidth) {
+            x += step;
+        } else {
+            direction = 'down';
+        }
+    }
 
     if (direction === 'down') {
-    if (y + childHeight < parentHeight) {
-    y += step;
-} else {
-    direction = 'left';
-}
-}
+        if (y + childHeight < parentHeight) {
+            y += step;
+        } else {
+            direction = 'left';
+        }
+    }
 
     if (direction === 'left') {
-    if (x > 0) {
-    x -= step;
-} else {
-    direction = 'up';
-}
-}
+        if (x > 0) {
+            x -= step;
+        } else {
+            direction = 'up';
+        }
+    }
 
     if (direction === 'up') {
-    if (y > 0) {
-    y -= step;
-} else {
-
-    direction = 'right';
-
-}
-}
+        if (y > 0) {
+            y -= step;
+        } else {
+            direction = 'right';
+        }
+    }
 
     requestAnimationFrame(moveSquare);
 }
 
-    moveSquare();
+moveSquare();
 
-// _________________________________секундамер дз2
+// 3. Секундомер
+const startButton = document.getElementById('start');
+const stopButton = document.getElementById('stop');
+const resetButton = document.getElementById('reset');
+const secondsDisplay = document.getElementById('seconds');
 
-    const startButton = document.getElementById('start');
-    const stopButton = document.getElementById('stop');
-    const resetButton = document.getElementById('reset');
-    const secondsDisplay = document.getElementById('seconds');
+let isRunning = false;
+let time = 0;
+let timerInterval;
 
-    let isRunning = false; // состояние секундомера
-    let time = 0; // начальное время
-    let timerInterval; // переменная для хранения интервала
-
-    //________________________- Функция для старта секундомера
-    function startTimer() {
+function startTimer() {
     isRunning = true;
-    startButton.textContent = 'Pause'; // сменить текст кнопки на "Pause"
+    startButton.textContent = 'Pause';
 
     timerInterval = setInterval(() => {
-    time++;
-    secondsDisplay.textContent = time; // обновить отображаемое время
-}, 1000);
+        time++;
+        secondsDisplay.textContent = time;
+    }, 1000);
 }
 
-    // ____________________________________________________Функция для остановки секундомера
-    function stopTimer() {
+function stopTimer() {
     isRunning = false;
-    clearInterval(timerInterval); // остановить интервал
-    startButton.textContent = 'Resume'; // сменить текст кнопки на "Resume"
+    clearInterval(timerInterval);
+    startButton.textContent = 'Resume';
 }
 
-    // _____________________________________________________Функция для сброса секундомера
-    function resetTimer() {
+function resetTimer() {
     time = 0;
-    secondsDisplay.textContent = time; // обновить отображаемое время
+    secondsDisplay.textContent = time;
     if (isRunning) {
-    clearInterval(timerInterval); // остановить интервал, если он работает
-}
-    isRunning = false;
-    startButton.textContent = 'Start'; // вернуть текст кнопки к исходному состоянию
-}
-
-    // _____________________________________________________Обработчики событий для кнопок
-    startButton.addEventListener('click', () => {
-    if (isRunning) {
-    stopTimer(); // если уже работает, остановить
-} else {
-    startTimer(); // если не работает, start
-}
-});
-
-    stopButton.addEventListener('click', () => {
-    stopTimer(); // остановить
-});
-
-    resetButton.addEventListener('click', () => {
-    resetTimer(); // сбросить
-});
-
-
-// ____________________________________XMLHttpRequest к any.json
-const xhr = new XMLHttpRequest();
-xhr.open('GET', '../data/any.json');
-xhr.onload = function () {
-    if (xhr.status === 200) {
-        const data = JSON.parse(xhr.responseText);
-        console.log('Данные из any.json:', data);
-    } else {
-        console.error('Ошибка загрузки any.json');
+        clearInterval(timerInterval);
     }
-};
-xhr.send();
+    isRunning = false;
+    startButton.textContent = 'Start';
+}
 
+startButton.addEventListener('click', () => {
+    if (isRunning) {
+        stopTimer();
+    } else {
+        startTimer();
+    }
+});
 
-//____________________________ Загрузка персонажей и отображение карточек
-const charactersList = document.querySelector('.characters-list');
+stopButton.addEventListener('click', () => {
+    stopTimer();
+});
 
-fetch('../data/characters.json')
-    .then(response => response.json())
-    .then(characters => {
+resetButton.addEventListener('click', () => {
+    resetTimer();
+});
+
+// 4. Загрузка any.json с использованием async/await
+async function loadAnyJson() {
+    try {
+        const response = await fetch('../data/any.json');
+        if (!response.ok) {
+            throw new Error('Ошибка загрузки any.json');
+        }
+        const data = await response.json();
+        console.log('Данные из any.json:', data);
+    } catch (error) {
+        console.error('Ошибка:', error.message);
+    }
+}
+
+loadAnyJson();
+
+// 5. Загрузка персонажей из characters.json и отображение карточек
+async function loadCharacters() {
+    try {
+        const response = await fetch('../data/characters.json');
+        if (!response.ok) {
+            throw new Error('Ошибка загрузки characters.json');
+        }
+        const characters = await response.json();
+
+        const charactersList = document.querySelector('.characters-list');
         characters.forEach(character => {
             const card = document.createElement('div');
             card.className = 'character-card';
             card.innerHTML = `
-        <div class="character-photo">
-          <img src="${character.photo}" alt="${character.name}">
-        </div>
-        <h4>${character.name}</h4>
-        <p>${character.description}</p>
-      `;
+                <div class="character-photo">
+                    <img src="${character.photo}" alt="${character.name}">
+                </div>
+                <h4>${character.name}</h4>
+                <p>${character.description}</p>
+            `;
             charactersList.appendChild(card);
         });
-    })
-    .catch(error => console.error('Ошибка загрузки персонажей:', error));
+    } catch (error) {
+        console.error('Ошибка загрузки персонажей:', error.message);
+    }
+}
+
+loadCharacters();
